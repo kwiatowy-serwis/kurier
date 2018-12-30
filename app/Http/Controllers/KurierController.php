@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Kurier;
 use Illuminate\Http\Request;
 
-class FlowerController extends Controller
+class KurierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,30 +14,25 @@ class FlowerController extends Controller
      */
     public function index()
     {
-        return  \App\Http\Resources\Flower::collection(\App\Kurier::all());
+        return  \App\Http\Resources\Kurier::collection(\App\Kurier::where('free', 1)->get());
     }
 
     public function order(Request $request)
     {
         $id = $_POST['id'];
-        $quantity = $_POST['quantity'];
 
-        $flower = \App\Kurier::find($id);
+        $kurier = \App\Kurier::find($id);
 
-        if(!$flower || empty($flower))
+        if(!$kurier || empty($kurier))
         {
-            return ['data' => 'There is no flower with id: ' . $id];
+            return ['data' => 'There is no courier with id: ' . $id];
         }
 
-        if($flower->quantity < $quantity)
-        {
-            return ['data' => 'You want to order more flower than we have. You want '. $quantity . ' but we have ' . $flower->quantity];
-        }
 
-        $flower->quantity -= $quantity;
-        $flower->save();
+        $kurier->free = 0;
+        $kurier->save();
 
-        return ['data' => 'Your order will be processed'];
+        return ['data' => 'Your courier order will be processed'];
     }
 
     /**

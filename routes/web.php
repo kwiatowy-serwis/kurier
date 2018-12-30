@@ -15,15 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/flower', 'FlowerController@index');
+//Route::get('/flower', 'KurierController@index');
 Route::get('/flower', function ()
 {
-    return \App\Http\Resources\Flower::collection(\App\Kurier::all());
+    return \App\Http\Resources\Kurier::collection(\App\Kurier::all());
 });
 
 Route::post('/flower/', function ()
 {
-    return \App\Http\Resources\Flower::collection(\App\Kurier::all());
+    return \App\Http\Resources\Kurier::collection(\App\Kurier::all());
 });
 
-Route::get('/flower/create', 'FlowerController@create');
+Route::get('/flower/create', 'KurierController@create');
