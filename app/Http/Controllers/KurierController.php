@@ -15,6 +15,7 @@ class KurierController extends Controller
      */
     public function index()
     {
+
         return  \App\Http\Resources\Kurier::collection(\App\Kurier::where('free', 1)->get());
     }
 
@@ -58,11 +59,13 @@ class KurierController extends Controller
             $kurier->free = 0;
             $kurier->save();
 
+
+
             $orderPlace = new OrderPlace();
-            $orderPlace->receptionPlaceCity = $packTakePlace;
+            $orderPlace->receptionPlaceCity = $packTakePlaceCity;
             $orderPlace->receptionPlaceStreet = $packTakePlaceStreet;
             $orderPlace->receptionPlaceZipCode = $packTakePlaceZipCode;
-            $orderPlace->receptionPlacePhone = $packTakePlacePhone;
+            $orderPlace->receptionPlacePhone =  $packTakePlacePhone;
 
             $orderPlace->deliverPlaceFirstname = $deliverPlaceFirstName;
             $orderPlace->deliverPlaceLastname = $deliverPlaceLastName;
@@ -72,6 +75,8 @@ class KurierController extends Controller
             $orderPlace->deliverPlacePhone = $deliverPlacePhone;
 
             $orderPlace->kurier_id = $kurier->id;
+
+            $orderPlace->save();
 
             return ['data' => 'Your courier order will be processed'];
 

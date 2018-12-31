@@ -24,6 +24,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderPlace extends Model
 {
+
+    protected $fillable = ['receptionPlaceCity', 'receptionPlaceStreet', 'receptionPlaceZipCode' , 'receptionPlacePhone' , 'deliverPlaceFirstname', 'deliverPlaceLastname', 'deliverPlaceCity', 'deliverPlaceStreet', 'deliverPlaceZipCode', 'deliverPlacePhone', 'kurier_id'];
+
+
     public function kurier()
     {
         $this->belongsTo('App/Kurier');
