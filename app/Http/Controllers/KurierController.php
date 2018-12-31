@@ -22,13 +22,18 @@ class KurierController extends Controller
     {
         $id = $_POST['id'];
 
+
+
         $packTakePlace = $_POST['receptionPlace'];
+
+
+
         $packTakePlaceCity = $packTakePlace['city'];
         $packTakePlaceStreet = $packTakePlace['street'];
         $packTakePlaceZipCode = $packTakePlace['zip_code'];
         $packTakePlacePhone = $packTakePlace['phone'];
 
-        if(empty($packTakePlace) || !$packTakePlaceCity || !$packTakePlaceStreet || !$packTakePlaceZipCode || $packTakePlacePhone)
+        if(empty($packTakePlace) || !$packTakePlaceCity || !$packTakePlaceStreet || !$packTakePlaceZipCode || !$packTakePlacePhone)
         {
             return ['data' => 'Error: receptionPlace are required: city, street, zip_code, phone'];
         }
